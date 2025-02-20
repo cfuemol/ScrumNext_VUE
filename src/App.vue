@@ -1,7 +1,8 @@
 <template>
   
   <div id="app">
-    <NavBar />
+    <NavBar class="navbar"/>
+    <Ahorcado />
    
     <HelloWorld />
 
@@ -13,22 +14,21 @@
 <script>
 
   import NavBar from "@/components/navBar.vue";
-import HelloWorld from "./components/HelloWorld.vue";
+  import HelloWorld from "./components/HelloWorld.vue";
+  import Ahorcado from '@/components/Ahorcado.vue';
 
   export default {
     name: 'App',
     components: {
-      NavBar, HelloWorld,
+      NavBar, Ahorcado, HelloWorld
     },
   };
 
 </script>
 
 <style scoped>
-  .body{
+  *{
     background-color: lightskyblue;
-    width: 150px;
-    height: 150px;
-  }
+  } 
 
 </style>

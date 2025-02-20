@@ -1,5 +1,18 @@
-<template></template>
+<template>
 
-<script></script>
+    <div>
+        <h1>Bienvenidos al juego del Ahorcado</h1>
+    </div>
+</template>
 
-<style></style>
+<script>
+
+    export default {
+        name: 'Ahorcado',
+    };
+
+</script>
+
+<style>
+
+</style>
