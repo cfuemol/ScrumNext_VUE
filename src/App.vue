@@ -1,34 +1,44 @@
-<template>
-  
-  <div id="app">
-    <NavBar />
-   
-    <HelloWorld />
 
+
+<template>
+  <div id="app">
+    
+      <router-view />
+   
   </div>
 </template>
 
-
-
 <script>
-
-  import NavBar from "@/components/navBar.vue";
-import HelloWorld from "./components/HelloWorld.vue";
-
-  export default {
-    name: 'App',
-    components: {
-      NavBar, HelloWorld,
-    },
-  };
-
+export default {
+  name: 'App',
+  
+}
 </script>
 
+
 <style scoped>
-  .body{
-    background-color: lightskyblue;
-    width: 150px;
-    height: 150px;
+
+
+*{
+  background-color: rgb(47, 87, 133);
+  width:1400px;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
   }
 
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
 </style>
