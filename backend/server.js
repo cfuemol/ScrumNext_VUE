@@ -10,7 +10,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 
 
 const app = express();
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 9001;
 
 
 // Middleware
@@ -51,7 +51,8 @@ app.post('/api/register', async (req, res) => {
     await newUser.save();
     res.status(201).json({ success: true, message: 'Usuario registrado exitosamente' });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error al registrar usuario', error });
+    console.error('Error al registrar usuario:', error)
+    res.status(500).json({ success: false, message: 'Error al registrar usuario', error: error.message });
   }
 });
 

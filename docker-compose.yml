@@ -1,16 +1,25 @@
 version: '3.8'
 
 services:
+  
+
   mongodb:
-    image: mongo
+    image: mongo:4.4.3
     container_name: mongodb_service
     ports:
       - "27017:27017"
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+
     volumes:
       - mongo-data:/data/db
+    networks:
+      - mongo-network
 
   mongo-express:
-    image: mongo-express
+    image: mongo-express:0.54.0
     container_name: mongo-express_vue
     depends_on:
       - mongodb
@@ -19,7 +28,11 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: admin
-      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_SERVER: mongodb_service
+      ME_CONFIG_MONGODB_PORT: 27017
+
+    networks:
+      - mongo-network
 
   express-app:
     build: ./backend
@@ -27,14 +40,20 @@ services:
     depends_on:
       - mongodb
     ports:
-      - "9000:9000"
+      - "9001:9001"
     environment:
-      - PORT=9000
+      - PORT=9001
       - JWT_SECRET=your_jwt_secret_key
-      - MONGODB_URL=mongodb://admin:admin@mongodb:27017/mongoDB
+      - MONGODB_URL=mongodb://admin:admin@mongodb_service:27017/admin
     volumes:
       - ./backend:/app
     command: ["npm", "start"]
+    networks:
+      - mongo-network
 
 volumes:
   mongo-data:
+
+networks:
+  mongo-network:
+    driver: bridge

@@ -1,5 +1,5 @@
 # Usar una imagen base de Node.js
-FROM node:14
+FROM node:16
 
 # Establecer el directorio de trabajo
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Exponer el puerto 9000
-EXPOSE 9000
+EXPOSE 9001
 
 # Comando para ejecutar la aplicación
-CMD ["node", "server.js"]-
+CMD ["npm", "start"]

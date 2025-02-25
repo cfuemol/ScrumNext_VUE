@@ -1,5 +1,8 @@
 <template>
   <div class="register-container">
+    <div id="logo">
+      <img :src="logo" alt="logo VIEWNEXT" width="20%" class="logo" />
+    </div>
     <div id="register-form">
       <form @submit.prevent="register">
         <h2>Registrarse</h2>
@@ -9,13 +12,13 @@
         <button type="submit">Registrarse</button>
       </form>
     </div>
-    
-    <p v-if="errorMessage">{{ errorMessage }}</p>
-    <p v-if="successMessage">{{ successMessage }}</p>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+import logo from '@/assets/logoVNBlanco.png'
+
 export default {
   name: 'Register',
   data() {
@@ -24,27 +27,26 @@ export default {
       email: '',
       password: '',
       errorMessage: '',
-      successMessage: ''
+      successMessage: '',
+      logo
     };
   },
   methods: {
     async register() {
       try {
-        const response = await axios.post('http://localhost:9000/api/register', {
+        const response = await axios.post('http://localhost:9001/api/register', {
           name: this.name,
           email: this.email,
           password: this.password
         });
         if (response.data.success) {
-          this.successMessage = 'Registro exitoso. Ahora puede iniciar sesión.';
-          this.errorMessage = '';
+          alert('Usuario registrado exitosamente');
+          this.$router.push('/');
         } else {
-          this.errorMessage = 'Error al registrar. Inténtelo de nuevo.';
-          this.successMessage = '';
+          alert(response.data.message);
         }
       } catch (error) {
-        this.errorMessage = 'Ocurrió un error. Por favor, inténtelo de nuevo.';
-        this.successMessage = '';
+        alert('Error al registrar usuario: ' + error.response.data.message);
       }
     }
   }
@@ -104,7 +106,8 @@ p {
 #register-form{
   width:50%;
   margin:auto;
-  margin-top:15%;
+  margin-top:10%;
 
 }
+
 </style>
