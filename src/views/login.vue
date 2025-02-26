@@ -48,7 +48,7 @@ export default {
           // Guardar el token en el almacenamiento local o en una cookie
           localStorage.setItem('token', response.data.token);
           // Redirigir a la página principal o dashboard
-          this.$router.push('/dashboard');
+          this.$router.push('/landing');
         } else {
           alert('Correo electrónico o contraseña incorrectos');
         }
@@ -114,7 +114,7 @@ export default {
 #login-container{
     width:50%;
     margin:auto;
-    margin-top: 10%;
+    margin-top: 5%;
     text-align: center;
 }
 /* Agregamos esto para que el body tenga un height del 100% */

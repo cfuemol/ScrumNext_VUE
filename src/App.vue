@@ -9,8 +9,14 @@
 </template>
 
 <script>
+import Planner from '@/views/planner.vue';
+import Landing from '@/views/landing.vue';
 export default {
   name: 'App',
+  components:{
+    Planner,
+    Landing
+  }
   
 }
 </script>
@@ -21,7 +27,7 @@ export default {
 
 *{
   background-color: rgb(47, 87, 133);
-  width:1400px;
+  width:100%;
 }
 
 @media (min-width: 1024px) {
@@ -31,9 +37,7 @@ export default {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+  
 
   header .wrapper {
     display: flex;

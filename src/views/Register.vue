@@ -106,7 +106,7 @@ p {
 #register-form{
   width:50%;
   margin:auto;
-  margin-top:10%;
+  margin-top:5%;
 
 }
 
